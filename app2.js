@@ -46,5 +46,21 @@ function cb (err,response,body){
    console.log(url);
    var req = request (url,cb);
     while (result === undefined){
-      
-    }  
+      require ('deasync').runLoopOnce();     
+    } 
+  return result;
+}
+
+
+app.get('/',function(req,res){
+   res.sendFile(path.join(__dirname,'index.html'));
+})
+
+io.on('connection',function(client){
+  console.log('Socket connection established');
+  client.on('SendLocation',function(data){
+    console.log('Location Received');
+    console.log(data);
+  } 
+}) 
+server.listen(8080);
