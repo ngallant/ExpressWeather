@@ -61,6 +61,6 @@ io.on('connection',function(client){
   client.on('SendLocation',function(data){
     console.log('Location Received');
     console.log(data);
-  } 
-}) 
+  });
+});
 server.listen(8080);
