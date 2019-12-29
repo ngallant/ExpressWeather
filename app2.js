@@ -34,5 +34,17 @@ function cb (err,response,body){
   }
   var weather = JSON.parse(body)
   if (weather.message == 'city not found'){
-    result = "Unable to get 
+    result = "Unable to get weather" + weather.message;
+  } else {
+    result = "Right now its" + weather.main.temp + ' degrees with ' + weather.weather[0].description;
   }
+ }
+
+ function getWeather(city){
+   result = undefined;
+   var result = 'http://api.openweathermap.org/data/2.5/weather?q=$(city)&units=imperial&appid=$(apiKey)';
+   console.log(url);
+   var req = request (url,cb);
+    while (result === undefined){
+      
+    }  
