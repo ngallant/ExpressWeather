@@ -1,15 +1,18 @@
 var request = require ('request');
 var express = require ('express');
 var bodyParser = require ('body-parser');
+var io = require('socket.io')(server);
+
 var app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded((extended:true)));
+app.use(bodyParser.urlencoded({extended:true}));
 var path= require ("path");
 var server = require('http').createServer(app);
 
 app.post('/webhook',function(req,res) {
   console.log('Received a post request');
-  if (!req.body) return res.sendStatus(400) res.setHeader('Content-Type','application/json');
+  if (!req.body) return res.sendStatus(400) 
+    res.setHeader('Content-Type','application/json');
   console.log('Here is the request from DialogFlow');
   console.log(req.body);
     var city = req.body.queryResult.parameters['geo-city'];
@@ -23,9 +26,9 @@ app.post('/webhook',function(req,res) {
   console.log("Here is the response to dialogbox");
   console.log(responseObj);
   return res.json(responseObj);
-})
+});
 
-vap apiKey ="c8db7d3c494184411e3721de2125950a";
+var apiKey = 'c8db7d3c494184411e3721de2125950a';
 var result
 
 function cb (err,response,body){
