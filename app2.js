@@ -1,13 +1,13 @@
 var request = require ('request');
 var express = require ('express');
 var bodyParser = require ('body-parser');
-var io = require('socket.io')(server);
 
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 var path= require ("path");
 var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 
 app.post('/webhook',function(req,res) {
   console.log('Received a post request');
